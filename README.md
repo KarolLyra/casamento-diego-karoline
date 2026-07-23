@@ -1,6 +1,6 @@
 # 💍 Diego & Karoline — Site de Fotos do Casamento
 
-Site estático elegante e responsivo para que os convidados enviem fotos do casamento de Diego e Karoline por meio de um Google Forms.
+Site estático com design de convite de casamento premium — elegante, romântico e sofisticado. Os convidados acessam pelo celular e enviam fotos por meio de um Google Forms.
 
 ---
 
@@ -9,12 +9,12 @@ Site estático elegante e responsivo para que os convidados enviem fotos do casa
 ```
 casamento/
 ├── index.html          → Página principal
-├── style.css           → Estilos visuais
+├── style.css           → Estilos visuais (variáveis no topo)
 ├── script.js           → JavaScript mínimo
 ├── README.md           → Este arquivo
 └── assets/
     ├── casal.jpg       → Foto do casal
-    └── favicon.svg     → Ícone da aba do navegador
+    └── favicon.svg     → Ícone da aba (D&K)
 ```
 
 ---
@@ -25,12 +25,17 @@ casamento/
 2. Recomenda-se uma foto em orientação **retrato (vertical)** com pelo menos **800px de largura**.
 3. Para ajustar o enquadramento (foco) da foto, abra o arquivo `style.css` e altere a variável:
    ```css
-   --photo-position: center 30%;
+   --photo-position: center 25%;
    ```
    - `center center` = centro da imagem
    - `center top` = foco no topo
-   - `center 30%` = foco levemente acima do centro (padrão)
-   - `center bottom` = foco na parte inferior
+   - `center 25%` = foco nos rostos (padrão)
+   - `center 40%` = foco um pouco abaixo do centro
+
+4. Para alterar a altura da foto na tela:
+   ```css
+   --photo-height: 40dvh;  /* Ajuste entre 30dvh e 50dvh */
+   ```
 
 ---
 
@@ -116,21 +121,22 @@ Todos os textos estão no `index.html`. Basta editar diretamente o conteúdo das
 ### Cores
 No início do `style.css`, altere as variáveis em `:root`:
 ```css
---color-primary: #91A8D0;        /* Azul Serenity */
---color-dark: #40577A;           /* Azul escuro */
---color-bg: #EEF3FA;            /* Fundo */
---color-text: #24324A;          /* Texto principal */
---color-text-secondary: #68758A; /* Texto secundário */
+--blue-deep: #213A5C;        /* Azul profundo (textos e botão) */
+--blue-serenity: #91A8D0;    /* Azul serenity (destaques) */
+--blue-light: #DCE7F4;       /* Azul claro */
+--gold: #C9A45F;             /* Dourado (detalhes e bordas) */
+--white-warm: #FAF8F3;       /* Fundo principal */
+--beige: #F4EFE7;            /* Bege alternativo */
 ```
 
 ### Altura da foto
 ```css
---photo-height: 42%;  /* Ajuste entre 35% e 50% */
+--photo-height: 40dvh;  /* Ajuste entre 30dvh e 50dvh */
 ```
 
 ### Enquadramento da foto
 ```css
---photo-position: center 30%;  /* Mude conforme necessidade */
+--photo-position: center 25%;  /* Mude conforme necessidade */
 ```
 
 ---
@@ -168,6 +174,13 @@ Para garantir carregamento rápido (especialmente em 4G):
 
 ## 📋 Resumo técnico
 
+- Design inspirado em convite de casamento de papelaria fina
+- Paleta azul profundo, azul serenity, dourado e branco quente
+- Elementos florais em SVG (aquarela azul, folhas douradas, pétalas brancas)
+- Divisores e ornamentos dourados
+- Tipografia: Great Vibes (nomes), Cormorant Garamond (mensagem), Montserrat (corpo)
+- Textura de papel no fundo (CSS puro, sem imagem externa)
+- Transição suave entre foto e conteúdo (gradiente + borda orgânica)
 - HTML semântico e acessível
 - CSS puro com variáveis customizáveis
 - JavaScript mínimo (funciona sem ele)

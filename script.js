@@ -6,17 +6,16 @@
 (function () {
   'use strict';
 
-  // Indica que o JavaScript carregou
+  // Indica que JavaScript está disponível
   document.documentElement.classList.add('js-loaded');
 
   // Prevenção de clique duplicado no botão
-  var btn = document.querySelector('.hero__btn');
+  var btn = document.querySelector('.btn');
   if (btn) {
     var clicked = false;
     btn.addEventListener('click', function () {
       if (clicked) return;
       clicked = true;
-      // Libera o clique após 3 segundos
       setTimeout(function () {
         clicked = false;
       }, 3000);
