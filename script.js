@@ -6,11 +6,10 @@
 (function () {
   'use strict';
 
-  // Indica que JavaScript está disponível
   document.documentElement.classList.add('js-loaded');
 
   // Prevenção de clique duplicado no botão
-  var btn = document.querySelector('.btn');
+  var btn = document.querySelector('.photo-button');
   if (btn) {
     var clicked = false;
     btn.addEventListener('click', function () {
