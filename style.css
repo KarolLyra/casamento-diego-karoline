@@ -1,0 +1,412 @@
+/* ============================================
+   CASAMENTO DIEGO & KAROLINE
+   Layout mobile-first — tela única sem rolagem
+   ============================================ */
+
+/* --- Variáveis CSS --- */
+:root {
+  /* Cores */
+  --color-primary: #91A8D0;
+  --color-dark: #40577A;
+  --color-bg: #EEF3FA;
+  --color-white: #FCFCFD;
+  --color-text: #24324A;
+  --color-text-secondary: #68758A;
+
+  /* Tipografia */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+
+  /* Foto — altura fixa em px para controle preciso.
+     A foto será cortada (object-fit: cover).
+     Ajuste este valor conforme preferir. */
+  --photo-height: 180px;
+
+  /* Enquadramento da foto (onde o "foco" da imagem fica).
+     Exemplos: "center center", "center top", "center 40%" */
+  --photo-position: center 30%;
+
+  /* Safe areas (iPhone notch/barra) */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Layout principal: preenche exatamente a tela --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  height: 100vh; /* fallback */
+  padding-top: var(--sat);
+  padding-bottom: var(--sab);
+}
+
+/* --- Foto (faixa cortada no topo) --- */
+.hero__photo {
+  position: relative;
+  height: var(--photo-height);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--photo-position);
+  display: block;
+}
+
+.hero__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--color-bg) 100%
+  );
+  pointer-events: none;
+}
+
+/* --- Conteúdo (ocupa o restante da tela) --- */
+.hero__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.8rem 1.5rem;
+  gap: 0.5rem;
+}
+
+.hero__names {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 7vw, 2.6rem);
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.hero__amp {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-primary);
+  margin: 0 0.1em;
+}
+
+.hero__date {
+  font-size: clamp(0.78rem, 2.8vw, 0.92rem);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero__text {
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  max-width: 300px;
+}
+
+/* --- Botão --- */
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 50px;
+  padding: 0.85rem 2rem;
+  margin-top: 0.3rem;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(64, 87, 122, 0.2);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hero__btn:hover {
+  background-color: #4d6a94;
+  box-shadow: 0 6px 20px rgba(64, 87, 122, 0.3);
+}
+
+.hero__btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(64, 87, 122, 0.2);
+}
+
+.hero__btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.hero__btn-icon {
+  flex-shrink: 0;
+}
+
+.hero__note {
+  font-size: clamp(0.68rem, 2.3vw, 0.75rem);
+  color: var(--color-text-secondary);
+  opacity: 0.75;
+  max-width: 260px;
+  line-height: 1.35;
+}
+
+/* --- Rodapé (dentro da tela, sem scroll) --- */
+.footer {
+  text-align: center;
+  padding: 0.6rem 1.5rem;
+  padding-bottom: calc(0.6rem + var(--sab));
+  flex-shrink: 0;
+}
+
+.footer__text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.78rem, 2.8vw, 0.9rem);
+  color: var(--color-text-secondary);
+  opacity: 0.65;
+}
+
+/* --- Elementos florais --- */
+.floral {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.floral--top {
+  top: 0;
+  left: 0;
+  width: 120px;
+}
+
+.floral--bottom {
+  bottom: 0;
+  right: 0;
+  width: 120px;
+}
+
+.floral svg {
+  width: 100%;
+  height: auto;
+}
+
+/* --- Animações de entrada --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero__photo {
+  animation: fadeInZoom 1s ease-out both;
+}
+
+.hero__names {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero__date {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero__text {
+  animation: fadeInUp 0.8s ease-out 0.55s both;
+}
+
+.hero__btn {
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.hero__note {
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.footer {
+  animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+
+/* --- Respeitar prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Responsividade --- */
+
+/* Celulares pequenos (até 360px) */
+@media (max-width: 360px) {
+  :root {
+    --photo-height: 140px;
+  }
+
+  .hero__content {
+    padding: 0.6rem 1.2rem;
+    gap: 0.35rem;
+  }
+
+  .hero__names {
+    font-size: 1.5rem;
+  }
+
+  .hero__btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    min-height: 48px;
+  }
+
+  .floral--top,
+  .floral--bottom {
+    width: 90px;
+  }
+}
+
+/* Celulares médios (361px a 430px) */
+@media (min-width: 361px) and (max-width: 430px) {
+  :root {
+    --photo-height: 180px;
+  }
+}
+
+/* Celulares grandes (acima de 431px) */
+@media (min-width: 431px) and (max-width: 599px) {
+  :root {
+    --photo-height: 200px;
+  }
+
+  .hero__content {
+    gap: 0.6rem;
+  }
+
+  .floral--top,
+  .floral--bottom {
+    width: 140px;
+  }
+}
+
+/* Modo paisagem no celular */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --photo-height: 0px;
+  }
+
+  .hero {
+    flex-direction: row;
+  }
+
+  .hero__photo {
+    width: 35%;
+    height: 100dvh;
+    height: 100vh;
+    min-height: unset;
+  }
+
+  .hero__content {
+    width: 65%;
+    padding: 1rem 1.5rem;
+    gap: 0.4rem;
+  }
+
+  .hero__overlay {
+    height: 100%;
+    width: 50%;
+    left: auto;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to right, transparent 0%, var(--color-bg) 100%);
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 65%;
+    padding: 0.4rem 1rem;
+  }
+
+  .floral--top,
+  .floral--bottom {
+    width: 80px;
+    opacity: 0.4;
+  }
+}
+
+/* Tablets e desktop (capricho, mas o foco é celular) */
+@media (min-width: 600px) {
+  :root {
+    --photo-height: 220px;
+  }
+
+  .hero {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hero__content {
+    gap: 0.7rem;
+  }
+
+  .hero__text {
+    max-width: 360px;
+  }
+}
